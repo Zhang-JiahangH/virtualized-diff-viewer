@@ -31,4 +31,4 @@ jobs:
       - run: pnpm install
       - run: pnpm build
       - run: pnpm test
-      - run: pnpm --filter react-virtualized-diff publish --access public
+      - run: pnpm --filter react-virtualized-diff publish --access public --no-git-checks

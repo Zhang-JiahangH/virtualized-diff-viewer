@@ -168,7 +168,7 @@ See [CHANGELOG.md](./CHANGELOG.md) for tracked releases and supported capabiliti
 
 ### Additional TODOs to make this project more popular
 
-- [ ] Detailed benchmark report vs common diff viewers
+- [x] Detailed benchmark report vs common diff viewers
 - [ ] Keyboard navigation + accessibility improvements
 - [ ] Dark/light theme presets and design tokens
 - [ ] SSR usage guide (Next.js / Remix examples)

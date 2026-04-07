@@ -8,3 +8,74 @@ body,
   background: #ffffff;
   color: #111827;
 }
+
+.page {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 16px 40px;
+}
+
+.benchmark-page {
+  max-width: 1280px;
+}
+
+.benchmark-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 16px;
+  font-size: 14px;
+}
+
+.benchmark-table th,
+.benchmark-table td {
+  border: 1px solid #e5e7eb;
+  padding: 10px 12px;
+  text-align: left;
+}
+
+.benchmark-table th {
+  background: #f9fafb;
+}
+
+.charts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.chart-card {
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 12px;
+}
+
+.bar-row {
+  display: grid;
+  grid-template-columns: 150px 1fr 50px;
+  gap: 8px;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.bar-track {
+  height: 10px;
+  background: #e5e7eb;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #2563eb, #22d3ee);
+}
+
+.conclusion {
+  margin-top: 20px;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.note {
+  color: #4b5563;
+}

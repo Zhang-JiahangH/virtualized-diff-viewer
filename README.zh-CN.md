@@ -1,64 +1,44 @@
 # react-virtualized-diff
 
-一个面向**超大文本文件**场景的高性能 React 差异对比组件（虚拟滚动渲染）。
+面向**大体量文本/代码文件**的高性能 React Diff 组件（虚拟滚动渲染）。
 
-> npm 包名：**`react-virtualized-diff`**
+- 📦 npm：[`react-virtualized-diff`](https://www.npmjs.com/package/react-virtualized-diff)
+- 🌐 在线 Demo：https://www.zhangjiahang.com/react-virtualized-diff
+- 📊 Benchmark 报告：[benchmark-results/results.md](./benchmark-results/results.md)
+- 🇬🇧 English README：[README.md](./README.md)
 
-[English README](./README.md)
+## 为什么做这个库
 
----
+很多 diff 组件在小文件场景表现不错，但在 `10k+` 行后会出现明显卡顿。
 
-## 项目定位
+`react-virtualized-diff` 重点是：
 
-很多 diff 组件在小文件场景表现不错，但面对数万行甚至十万行文本时，渲染和交互会明显变慢。
-
-`react-virtualized-diff` 的目标是：
-
-- **性能优先**：通过虚拟列表减少 DOM 压力
-- **可读性优先**：清晰的左右对比视图
-- **可配置性**：支持上下文折叠行数配置
-- **工程可用性**：TypeScript 友好、接入简单
-
----
-
-## 功能特性
-
-- ✅ 左右并排差异视图
-- ✅ 虚拟化渲染（适合大文件）
-- ✅ 未变化区块折叠 + 上下文行
-- ✅ React 项目快速接入
-- ✅ 开箱即用 TypeScript 类型定义
-
----
+- **虚拟化渲染**，优先保证大文件性能
+- **左右并排视图**，提升代码审阅效率
+- **可折叠未变更区块**，支持上下文行配置
+- **TypeScript 友好**，接入稳定
 
 ## 安装
 
 ```bash
-# pnpm
 pnpm add react-virtualized-diff
-
-# npm
-npm install react-virtualized-diff
-
-# yarn
-yarn add react-virtualized-diff
+# 或 npm i react-virtualized-diff
+# 或 yarn add react-virtualized-diff
 ```
-
----
 
 ## 快速开始
 
 ```tsx
 import { DiffViewer } from 'react-virtualized-diff';
 
-const oldText = `line 1\nline 2\nline 3`;
-const newText = `line 1\nline 2 changed\nline 3\nline 4`;
+const original = `line 1\nline 2\nline 3`;
+const modified = `line 1\nline 2 changed\nline 3\nline 4`;
 
-export function Example() {
+export function App() {
   return (
     <DiffViewer
-      original={oldText}
-      modified={newText}
+      original={original}
+      modified={modified}
       contextLines={2}
       height={480}
     />
@@ -66,33 +46,48 @@ export function Example() {
 }
 ```
 
----
+## API
 
-## 当前 API
+### `DiffViewer`
 
-### `DiffViewer` 属性
+| 属性 | 类型 | 默认值 | 说明 |
+| --- | --- | --- | --- |
+| `original` | `string` | - | 原始文本 |
+| `modified` | `string` | - | 修改后文本 |
+| `contextLines` | `number` | `2` | 每个变更块周围保留的未变更行数 |
+| `height` | `number \| string` | `500` | 虚拟列表可视区域高度 |
+| `locale` | `DiffViewerLocale` | - | 组件文案本地化 |
+| `language` | `string` | - | 预留字段（未来语言相关扩展） |
 
-- `original: string`：原始文本
-- `modified: string`：修改后文本
-- `contextLines?: number`：变化块周围保留的上下文行数
-- `height?: number | string`：组件容器高度（建议固定高度以获得更好性能）
+### `DiffViewerLocale`
 
----
+| 字段 | 类型 | 说明 |
+| --- | --- | --- |
+| `collapse` | `string` | “收起”按钮文案 |
+| `showMoreLines` | `(count: number) => string` | “展开隐藏行”文案生成函数 |
 
 ## Benchmark（性能基准）
 
-我们提供了可运行的 benchmark，对比以下组件：
+内置 benchmark 对比：
 
-- `react-virtualized-diff`（本项目）
+- `react-virtualized-diff`
 - `react-diff-viewer`
 - `react-diff-viewer-continued`
 - `react-diff-view`
 
+数据规模：`1k / 10k / 50k / 100k` 行。
+
+观测指标：
+
+- FPS（自动滚动过程）
+- 首次渲染时间
+- 内存占用（`usedJSHeapSize`）
+
 最新结果亮点：
 
-- **10k 行**：本项目保持约 **60 FPS**，首屏渲染 **187.2 ms**，内存 **9.5 MB**。
-- **50k / 100k 行**：`react-diff-viewer` 与 `react-diff-viewer-continued` 在 `60000 ms` 超时限制内未完成。
-- **100k 行**：本项目内存 **141.1 MB**，而 `react-diff-view` 为 **1297.0 MB**（约 **9.2 倍**差距）；FPS 分别为 **60.4 vs 5.6**。
+- `10k` 行：约 `60 FPS`，首渲染 `187.2 ms`，内存 `9.5 MB`。
+- `50k/100k` 行：`react-diff-viewer` 与 `react-diff-viewer-continued` 超时。
+- `100k` 行：本库 `141.1 MB`，`react-diff-view` 为 `1297.0 MB`。
 
 运行方式：
 
@@ -101,67 +96,28 @@ pnpm install
 pnpm benchmark
 ```
 
-详细结果请查看：[`benchmark-results/results.md`](./benchmark-results/results.md)
+## Demo
 
----
-
-## 仓库结构
-
-```text
-apps/demo/       # Vite 演示项目
-packages/react/  # npm 包：react-virtualized-diff
-```
-
----
-
-## 本地开发
+- 在线体验：https://www.zhangjiahang.com/react-virtualized-diff
+- 本地运行：
 
 ```bash
 pnpm install
 pnpm dev
-pnpm build
 ```
 
----
+## 仓库结构
 
-## npm 包 README 支持说明
+```text
+apps/demo/       # Vite 演示应用
+apps/benchmark/  # benchmark 应用
+packages/react/  # npm 包源码
+```
 
-为确保 npm 页面文档可用：
-
-- 在 `packages/react/README.md` 维护包级说明
-- 在 `packages/react/package.json` 发布文件中包含 README
-- 根目录 README 与中文文档互相链接
-
----
-
-## 版本发布记录
+## 版本记录
 
 详见 [CHANGELOG.md](./CHANGELOG.md)。
 
----
-
-## 后续规划
-
-### 近期路线
-
-- [ ] 可选语法高亮（性能优先设计）
-- [ ] 更完整的在线 Demo 场景（超大文件、复杂编辑）
-- [ ] 托管在线示例站点，方便快速体验
-- [ ] 更强的自定义能力（行渲染、gutter 等）
-
-### 可提升项目影响力的 TODO
-
-- [x] 与主流 diff 组件的基准测试报告
-- [ ] 键盘导航与无障碍增强
-- [ ] 深色/浅色主题预设
-- [ ] SSR 集成文档（Next.js / Remix）
-- [ ] 更多真实场景示例（JSON、日志、Markdown、代码）
-- [ ] CI 自动发布与语义化版本流程
-- [ ] 完善贡献指南与 issue 模板
-- [ ] 扩展多语言文档
-
----
-
-## 许可证
+## License
 
 MIT

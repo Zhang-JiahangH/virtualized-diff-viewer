@@ -82,6 +82,32 @@ export function Example() {
 
 ---
 
+## Benchmark suite
+
+A runnable benchmark harness is included to compare:
+
+- `react-virtualized-diff` (this project)
+- `react-diff-viewer`
+- `react-diff-view`
+
+Metrics collected for each dataset size (`1k / 10k / 50k / 100k` lines):
+
+- FPS (average during auto-scroll)
+- Initial render time (ms)
+- Memory usage (`usedJSHeapSize` in Chromium)
+
+Run:
+
+```bash
+pnpm install
+pnpm benchmark
+```
+
+Output files:
+
+- `benchmark-results/results.json`
+- `benchmark-results/results.md`
+
 ## Monorepo structure
 
 ```text

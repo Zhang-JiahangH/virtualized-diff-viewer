@@ -1,6 +1,6 @@
 [
   {
-    "lib": "virtualized-diff-viewer",
+    "lib": "react-virtualized-diff",
     "lines": 1000,
     "initialRenderTimeMs": 135.19999998807907,
     "averageFps": 60.4,
@@ -10,7 +10,7 @@
     "note": null
   },
   {
-    "lib": "virtualized-diff-viewer",
+    "lib": "react-virtualized-diff",
     "lines": 10000,
     "initialRenderTimeMs": 187.19999998807907,
     "averageFps": 60.4,
@@ -20,7 +20,7 @@
     "note": null
   },
   {
-    "lib": "virtualized-diff-viewer",
+    "lib": "react-virtualized-diff",
     "lines": 50000,
     "initialRenderTimeMs": 2961.699999988079,
     "averageFps": 60.4,
@@ -30,7 +30,7 @@
     "note": null
   },
   {
-    "lib": "virtualized-diff-viewer",
+    "lib": "react-virtualized-diff",
     "lines": 100000,
     "initialRenderTimeMs": 15242.300000011921,
     "averageFps": 60.4,

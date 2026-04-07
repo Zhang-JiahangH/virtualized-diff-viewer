@@ -5,7 +5,7 @@ import { Diff, Hunk, parseDiff } from 'react-diff-view';
 import 'react-diff-view/style/index.css';
 import { DiffViewer } from 'react-virtualized-diff';
 
-type LibraryName = 'virtualized-diff-viewer' | 'react-diff-viewer' | 'react-diff-viewer-continued' | 'react-diff-view';
+type LibraryName = 'react-virtualized-diff' | 'react-diff-viewer' | 'react-diff-viewer-continued' | 'react-diff-view';
 
 type BenchmarkParams = {
   lib: LibraryName;
@@ -34,7 +34,7 @@ declare global {
 const CONTINUED_PKG = 'react-diff-viewer-continued';
 
 const defaultParams: BenchmarkParams = {
-  lib: 'virtualized-diff-viewer',
+  lib: 'react-virtualized-diff',
   lines: 1000,
   height: 720,
 };
@@ -46,7 +46,7 @@ function parseParams(): BenchmarkParams {
   const height = Number(params.get('height') ?? defaultParams.height);
 
   const normalizedLib: LibraryName =
-    lib === 'react-diff-view' || lib === 'react-diff-viewer' || lib === 'react-diff-viewer-continued' || lib === 'virtualized-diff-viewer'
+    lib === 'react-diff-view' || lib === 'react-diff-viewer' || lib === 'react-diff-viewer-continued' || lib === 'react-virtualized-diff'
       ? lib
       : defaultParams.lib;
 
@@ -170,7 +170,7 @@ function App() {
 
   let viewer: React.ReactNode;
 
-  if (params.lib === 'virtualized-diff-viewer') {
+  if (params.lib === 'react-virtualized-diff') {
     viewer = <DiffViewer original={payload.oldText} modified={payload.newText} height={params.height} />;
   } else if (params.lib === 'react-diff-viewer') {
     viewer = (

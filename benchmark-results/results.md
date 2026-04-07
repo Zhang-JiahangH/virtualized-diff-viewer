@@ -8,10 +8,10 @@ Per-case timeout: 60000 ms
 
 | Library | Lines | Status | Initial Render (ms) | FPS | Memory | Note |
 | --- | ---: | --- | ---: | ---: | ---: | --- |
-| virtualized-diff-viewer | 1,000 | ok | 135.20 | 60.40 | 9.5 MB |  |
-| virtualized-diff-viewer | 10,000 | ok | 187.20 | 60.40 | 9.5 MB |  |
-| virtualized-diff-viewer | 50,000 | ok | 2961.70 | 60.40 | 23.4 MB |  |
-| virtualized-diff-viewer | 100,000 | ok | 15242.30 | 60.40 | 141.1 MB |  |
+| react-virtualized-diff | 1,000 | ok | 135.20 | 60.40 | 9.5 MB |  |
+| react-virtualized-diff | 10,000 | ok | 187.20 | 60.40 | 9.5 MB |  |
+| react-virtualized-diff | 50,000 | ok | 2961.70 | 60.40 | 23.4 MB |  |
+| react-virtualized-diff | 100,000 | ok | 15242.30 | 60.40 | 141.1 MB |  |
 | react-diff-viewer | 1,000 | ok | 152.50 | 60.40 | 11.3 MB |  |
 | react-diff-viewer | 10,000 | ok | 1316.00 | 56.80 | 64.8 MB |  |
 | react-diff-viewer | 50,000 | timeout | N/A | N/A | N/A | Did not finish within 60000 ms |

@@ -91,7 +91,6 @@ try {
   await waitForServer();
   const browser = await launchBrowserWithAutoInstall();
   const context = await browser.newContext();
-  const page = await context.newPage();
   const results = [];
 
   for (const lib of libs) {
@@ -99,9 +98,11 @@ try {
       const url = `${baseUrl}/?lib=${encodeURIComponent(lib)}&lines=${lines}`;
       console.log(`Running benchmark: ${lib} @ ${lines.toLocaleString()} lines`);
 
-      await page.goto(url, { waitUntil: 'networkidle' });
+      const page = await context.newPage();
+      page.setDefaultTimeout(perCaseTimeoutMs);
 
       try {
+        await page.goto(url, { waitUntil: 'domcontentloaded', timeout: perCaseTimeoutMs });
         await page.waitForFunction(() => window.__BENCHMARK_DONE__ === true, { timeout: perCaseTimeoutMs });
         const result = await page.evaluate(() => window.__BENCHMARK_RESULT__);
         if (!result) {
@@ -118,18 +119,20 @@ try {
             initialRenderTimeMs: null,
             averageFps: null,
             memoryBytes: null,
-            userAgent: await page.evaluate(() => navigator.userAgent),
+            userAgent: null,
             status: 'timeout',
             note,
           });
-          continue;
+        } else {
+          throw error;
         }
-
-        throw error;
+      } finally {
+        await page.close();
       }
     }
   }
 
+  await context.close();
   await browser.close();
 
   const outDir = resolve('benchmark-results');

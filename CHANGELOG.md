@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 
 The format is based on Keep a Changelog, and this project follows Semantic Versioning.
 
+## [0.1.4] - 2026-04-07
+
+### Added
+
+- Published hosted demo page: https://www.zhangjiahang.com/react-virtualized-diff.
+
+### Changed
+
+- Bumped workspace package versions to `0.1.4` for the release.
+- Reworked both English and Chinese README documents with clearer, search-friendly structure.
+- Promoted API, benchmark, and demo sections for faster discovery by humans and AI crawlers.
+
 ## [0.1.3] - 2026-04-07
 
 ### Added

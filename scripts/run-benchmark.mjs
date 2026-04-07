@@ -82,10 +82,34 @@ async function launchBrowserWithAutoInstall() {
   }
 }
 
-const devServer = spawn('pnpm', ['--filter', 'benchmark-app', 'dev'], {
-  stdio: 'inherit',
-  env: { ...process.env, CI: '1' },
-});
+function startDevServer() {
+  return spawn('pnpm', ['exec', 'vite', '--host', '127.0.0.1', '--port', String(port), '--strictPort'], {
+    cwd: resolve('apps/benchmark'),
+    stdio: 'inherit',
+    env: { ...process.env, CI: '1' },
+  });
+}
+
+async function stopDevServer(devServer) {
+  if (!devServer || devServer.killed) {
+    return;
+  }
+
+  const exitPromise = new Promise((resolveExit) => {
+    devServer.once('exit', (code, signal) => {
+      const isExpected = signal === 'SIGTERM' || code === 0 || code === 143;
+      if (!isExpected) {
+        console.warn(`Benchmark dev server exited unexpectedly: code=${code}, signal=${signal}`);
+      }
+      resolveExit();
+    });
+  });
+
+  devServer.kill('SIGTERM');
+  await exitPromise;
+}
+
+const devServer = startDevServer();
 
 try {
   await waitForServer();
@@ -143,5 +167,5 @@ try {
   const timeoutCount = results.filter((item) => item.status === 'timeout').length;
   console.log(`Benchmark complete. Wrote ${results.length} records to benchmark-results/. Timeouts: ${timeoutCount}.`);
 } finally {
-  devServer.kill('SIGTERM');
+  await stopDevServer(devServer);
 }

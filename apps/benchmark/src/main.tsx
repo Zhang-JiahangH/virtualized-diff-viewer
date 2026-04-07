@@ -22,14 +22,7 @@ type BenchmarkResult = {
   userAgent: string;
 };
 
-type DiffViewerLikeProps = {
-  oldValue: string;
-  newValue: string;
-  splitView: boolean;
-  showDiffOnly: boolean;
-};
-
-type DiffViewerLikeComponent = React.ComponentType<DiffViewerLikeProps>;
+type DiffViewerLikeComponent = React.ComponentType<any>;
 
 declare global {
   interface Window {

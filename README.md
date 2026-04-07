@@ -1,4 +1,4 @@
-# virtualized-diff-viewer
+# react-virtualized-diff
 
 A high-performance, virtualized React diff viewer designed for **very large text files** and smooth developer experience.
 
@@ -12,7 +12,7 @@ A high-performance, virtualized React diff viewer designed for **very large text
 
 Most diff viewers are good for small files but become slow when input grows to tens of thousands of lines.
 
-`virtualized-diff-viewer` focuses on:
+`react-virtualized-diff` focuses on:
 
 - **Performance first** rendering with virtualization
 - **Readable side-by-side UI** for code/text review

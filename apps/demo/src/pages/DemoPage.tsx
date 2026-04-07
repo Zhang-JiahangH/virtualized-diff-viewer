@@ -21,6 +21,7 @@ type PerfMetrics = {
 
 export default function DemoPage() {
   const [state, setState] = useState<DemoState>(INITIAL_STATE);
+  const [isPreparing, setIsPreparing] = useState(false);
   const [metrics, setMetrics] = useState<PerfMetrics>({
     prepareTime: null,
     commitTime: null,
@@ -32,19 +33,38 @@ export default function DemoPage() {
 
   const dataset = useMemo(() => getDatasetByKey(state.dataset), [state.dataset]);
 
-  const diffData = useMemo(() => {
+  const [diffData, setDiffData] = useState(() => {
+    const initialDataset = getDatasetByKey(INITIAL_STATE.dataset);
+    return generateDiffText(initialDataset.lines);
+  });
+
+  useEffect(() => {
+    let cancelled = false;
     const prepareStart = performance.now();
-    const data = generateDiffText(dataset.lines);
-    const prepareEnd = performance.now();
 
-    prepareEndRef.current = prepareEnd;
+    setIsPreparing(true);
 
-    setMetrics((previous) => ({
-      ...previous,
-      prepareTime: prepareEnd - prepareStart,
-    }));
+    const timer = window.setTimeout(() => {
+      const data = generateDiffText(dataset.lines);
+      const prepareEnd = performance.now();
 
-    return data;
+      if (cancelled) {
+        return;
+      }
+
+      prepareEndRef.current = prepareEnd;
+      setDiffData(data);
+      setMetrics((previous) => ({
+        ...previous,
+        prepareTime: prepareEnd - prepareStart,
+      }));
+      setIsPreparing(false);
+    }, 0);
+
+    return () => {
+      cancelled = true;
+      window.clearTimeout(timer);
+    };
   }, [dataset.lines]);
 
   const updateStateWithPerfStart = (nextState: DemoState) => {
@@ -59,6 +79,10 @@ export default function DemoPage() {
   };
 
   useLayoutEffect(() => {
+    if (isPreparing) {
+      return;
+    }
+
     const interactionStart = interactionStartRef.current;
 
     if (interactionStart === null) {
@@ -73,7 +97,7 @@ export default function DemoPage() {
       commitTime: prepareEnd === null ? null : commitMoment - prepareEnd,
       totalTime: commitMoment - interactionStart,
     }));
-  }, [diffData, state.contextLines, state.height]);
+  }, [diffData, state.contextLines, state.height, isPreparing]);
 
   useEffect(() => {
     if (interactionStartRef.current === null) {
@@ -117,13 +141,23 @@ export default function DemoPage() {
               </div>
             </div>
 
-            <div className="demo-viewer-card__body">
+            <div className="demo-viewer-card__body demo-viewer-card__body--relative">
               <DiffViewer
                 original={diffData.oldText}
                 modified={diffData.newText}
                 height={state.height}
                 contextLines={state.contextLines}
               />
+              {isPreparing ? (
+                <div className="viewer-loading viewer-loading--overlay" aria-live="polite">
+                  <span className="viewer-loading__spinner" aria-hidden />
+                  <p className="viewer-loading__title">Preparing diff data…</p>
+                  <p className="viewer-loading__text">
+                    Large datasets like 100k lines can take a while. The viewer will update
+                    automatically when preparation is complete.
+                  </p>
+                </div>
+              ) : null}
             </div>
           </section>
         </div>

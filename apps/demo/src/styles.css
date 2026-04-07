@@ -367,6 +367,15 @@ select {
   padding: 24px;
 }
 
+.viewer-loading--overlay {
+  position: absolute;
+  inset: 0;
+  min-height: 0;
+  margin: 0;
+  background: rgba(2, 6, 23, 0.8);
+  backdrop-filter: blur(2px);
+}
+
 .viewer-loading__spinner {
   width: 36px;
   height: 36px;

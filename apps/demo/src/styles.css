@@ -400,3 +400,17 @@ select {
     transform: rotate(360deg);
   }
 }
+
+.toggle-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-soft);
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.toggle-row input {
+  width: 16px;
+  height: 16px;
+}

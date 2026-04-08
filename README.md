@@ -1,6 +1,6 @@
 # react-virtualized-diff
 
-High-performance React diff viewer for **large text/code files** with virtualized rendering.
+High-performance React code/text diff viewer for **large text/code files** with virtualized rendering.
 
 - 📦 npm: [`react-virtualized-diff`](https://www.npmjs.com/package/react-virtualized-diff)
 - 🌐 Live Demo: https://www.zhangjiahang.com/react-virtualized-diff

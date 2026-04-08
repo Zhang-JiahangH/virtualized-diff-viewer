@@ -2,7 +2,7 @@
   {
     "lib": "react-virtualized-diff",
     "lines": 1000,
-    "initialRenderTimeMs": 135.19999998807907,
+    "initialRenderTimeMs": 128.09999999403954,
     "averageFps": 60.4,
     "memoryBytes": 10000000,
     "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/147.0.7727.15 Safari/537.36",
@@ -12,8 +12,8 @@
   {
     "lib": "react-virtualized-diff",
     "lines": 10000,
-    "initialRenderTimeMs": 187.19999998807907,
-    "averageFps": 60.4,
+    "initialRenderTimeMs": 127,
+    "averageFps": 60.8,
     "memoryBytes": 10000000,
     "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/147.0.7727.15 Safari/537.36",
     "status": "ok",
@@ -22,7 +22,7 @@
   {
     "lib": "react-virtualized-diff",
     "lines": 50000,
-    "initialRenderTimeMs": 2961.699999988079,
+    "initialRenderTimeMs": 1536.2000000178814,
     "averageFps": 60.4,
     "memoryBytes": 24500000,
     "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/147.0.7727.15 Safari/537.36",
@@ -32,9 +32,9 @@
   {
     "lib": "react-virtualized-diff",
     "lines": 100000,
-    "initialRenderTimeMs": 15242.300000011921,
+    "initialRenderTimeMs": 7490.0999999940395,
     "averageFps": 60.4,
-    "memoryBytes": 148000000,
+    "memoryBytes": 109000000,
     "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/147.0.7727.15 Safari/537.36",
     "status": "ok",
     "note": null
@@ -42,7 +42,7 @@
   {
     "lib": "react-diff-viewer",
     "lines": 1000,
-    "initialRenderTimeMs": 152.5,
+    "initialRenderTimeMs": 155.40000000596046,
     "averageFps": 60.4,
     "memoryBytes": 11900000,
     "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/147.0.7727.15 Safari/537.36",
@@ -52,8 +52,8 @@
   {
     "lib": "react-diff-viewer",
     "lines": 10000,
-    "initialRenderTimeMs": 1316,
-    "averageFps": 56.8,
+    "initialRenderTimeMs": 1307.5,
+    "averageFps": 57.6,
     "memoryBytes": 68000000,
     "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/147.0.7727.15 Safari/537.36",
     "status": "ok",
@@ -82,7 +82,7 @@
   {
     "lib": "react-diff-viewer-continued",
     "lines": 1000,
-    "initialRenderTimeMs": 208.59999999403954,
+    "initialRenderTimeMs": 213.09999999403954,
     "averageFps": 60.4,
     "memoryBytes": 11900000,
     "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/147.0.7727.15 Safari/537.36",
@@ -92,8 +92,8 @@
   {
     "lib": "react-diff-viewer-continued",
     "lines": 10000,
-    "initialRenderTimeMs": 1309.8999999761581,
-    "averageFps": 58.8,
+    "initialRenderTimeMs": 1303.9000000059605,
+    "averageFps": 58,
     "memoryBytes": 68000000,
     "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/147.0.7727.15 Safari/537.36",
     "status": "ok",
@@ -122,7 +122,7 @@
   {
     "lib": "react-diff-view",
     "lines": 1000,
-    "initialRenderTimeMs": 265.7999999821186,
+    "initialRenderTimeMs": 289,
     "averageFps": 60.4,
     "memoryBytes": 19300000,
     "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/147.0.7727.15 Safari/537.36",
@@ -132,7 +132,7 @@
   {
     "lib": "react-diff-view",
     "lines": 10000,
-    "initialRenderTimeMs": 1438.5,
+    "initialRenderTimeMs": 1434.4000000059605,
     "averageFps": 60.4,
     "memoryBytes": 139000000,
     "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/147.0.7727.15 Safari/537.36",
@@ -142,8 +142,8 @@
   {
     "lib": "react-diff-view",
     "lines": 50000,
-    "initialRenderTimeMs": 7487.699999988079,
-    "averageFps": 13.2,
+    "initialRenderTimeMs": 7613.4000000059605,
+    "averageFps": 12.8,
     "memoryBytes": 662000000,
     "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/147.0.7727.15 Safari/537.36",
     "status": "ok",
@@ -152,8 +152,8 @@
   {
     "lib": "react-diff-view",
     "lines": 100000,
-    "initialRenderTimeMs": 16738.40000000596,
-    "averageFps": 5.6,
+    "initialRenderTimeMs": 16987.59999999404,
+    "averageFps": 6,
     "memoryBytes": 1360000000,
     "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/147.0.7727.15 Safari/537.36",
     "status": "ok",

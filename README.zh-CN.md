@@ -7,6 +7,9 @@
 - 📊 Benchmark 报告：[benchmark-results/results.md](./benchmark-results/results.md)
 - 🇬🇧 English README：[README.md](./README.md)
 
+## 示例
+![20260408-024125](https://github.com/user-attachments/assets/5345cbe4-04b1-4cfd-bcba-a68fcd7e82aa)
+
 ## 为什么做这个库
 
 很多 diff 组件在小文件场景表现不错，但在 `10k+` 行后会出现明显卡顿。

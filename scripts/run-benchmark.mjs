@@ -32,7 +32,8 @@ function formatBytes(bytes) {
   return `${mb.toFixed(1)} MB`;
 }
 
-function toMarkdown(results) {
+function toMarkdown(payload) {
+  const { generatedAt, perCaseTimeoutMs: timeoutMs, results } = payload;
   const header = '| Library | Lines | Status | Initial Render (ms) | FPS | Memory | Note |';
   const sep = '| --- | ---: | --- | ---: | ---: | ---: | --- |';
   const rows = results.map((item) => {
@@ -43,9 +44,9 @@ function toMarkdown(results) {
   return [
     '# Benchmark Results',
     '',
-    `Generated at: ${new Date().toISOString()}`,
+    `Generated at: ${generatedAt}`,
     '',
-    `Per-case timeout: ${perCaseTimeoutMs} ms`,
+    `Per-case timeout: ${timeoutMs} ms`,
     '',
     '> Memory usage comes from `performance.memory.usedJSHeapSize` and is only available in Chromium-based browsers.',
     '',
@@ -115,6 +116,7 @@ try {
   await waitForServer();
   const browser = await launchBrowserWithAutoInstall();
   const context = await browser.newContext();
+  const generatedAt = new Date().toISOString();
   const results = [];
 
   for (const lib of libs) {
@@ -161,8 +163,14 @@ try {
 
   const outDir = resolve('benchmark-results');
   mkdirSync(outDir, { recursive: true });
-  writeFileSync(resolve(outDir, 'results.json'), `${JSON.stringify(results, null, 2)}\n`, 'utf8');
-  writeFileSync(resolve(outDir, 'results.md'), `${toMarkdown(results)}\n`, 'utf8');
+  const payload = {
+    generatedAt,
+    perCaseTimeoutMs,
+    results,
+  };
+
+  writeFileSync(resolve(outDir, 'results.json'), `${JSON.stringify(payload, null, 2)}\n`, 'utf8');
+  writeFileSync(resolve(outDir, 'results.md'), `${toMarkdown(payload)}\n`, 'utf8');
 
   const timeoutCount = results.filter((item) => item.status === 'timeout').length;
   console.log(`Benchmark complete. Wrote ${results.length} records to benchmark-results/. Timeouts: ${timeoutCount}.`);

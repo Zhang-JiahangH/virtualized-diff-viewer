@@ -203,7 +203,7 @@ export default function PlaygroundControls(props: PlaygroundControlsProps) {
         >
           <option value="LINES">LINES</option>
           <option value="WORDS">WORDS</option>
-          <option value="CHARS">CHARS</option>
+          {/* <option value="CHARS">CHARS</option> */}
         </select>
 
         <label className="toggle-row" htmlFor="disableWordDiff">

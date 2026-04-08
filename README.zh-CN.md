@@ -83,11 +83,11 @@ export function App() {
 - 首次渲染时间
 - 内存占用（`usedJSHeapSize`）
 
-最新结果亮点：
+最新结果亮点（`2026-04-08T06:45:43.686Z`）：
 
-- `10k` 行：约 `60 FPS`，首渲染 `187.2 ms`，内存 `9.5 MB`。
-- `50k/100k` 行：`react-diff-viewer` 与 `react-diff-viewer-continued` 超时。
-- `100k` 行：本库 `141.1 MB`，`react-diff-view` 为 `1297.0 MB`。
+- `10k` 行（`react-virtualized-diff`）：`60.8 FPS`，首渲染 `127.0 ms`，内存 `9.5 MB`。
+- `50k/100k` 行：`react-diff-viewer` 与 `react-diff-viewer-continued` 均超时（单 case 超时 `60000 ms`）。
+- `100k` 行：本库 `104.0 MB`，`react-diff-view` 为 `1297.0 MB`。
 
 运行方式：
 

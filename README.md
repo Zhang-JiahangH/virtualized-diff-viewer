@@ -100,11 +100,11 @@ Metrics:
 - initial render time
 - memory usage (`usedJSHeapSize`)
 
-Quick highlights from latest report:
+Quick highlights from the latest report (`2026-04-08T06:45:43.686Z`):
 
-- At `10k` lines: ~`60 FPS`, `187.2 ms` initial render, `9.5 MB` memory.
-- At `50k/100k` lines: `react-diff-viewer` and `react-diff-viewer-continued` timeout.
-- At `100k` lines: `141.1 MB` (`react-virtualized-diff`) vs `1297.0 MB` (`react-diff-view`).
+- At `10k` lines (`react-virtualized-diff`): `60.8 FPS`, `127.0 ms` initial render, `9.5 MB` memory.
+- At `50k/100k` lines: `react-diff-viewer` and `react-diff-viewer-continued` both timeout (`60000 ms` per case).
+- At `100k` lines: `104.0 MB` (`react-virtualized-diff`) vs `1297.0 MB` (`react-diff-view`).
 
 Run benchmark:
 

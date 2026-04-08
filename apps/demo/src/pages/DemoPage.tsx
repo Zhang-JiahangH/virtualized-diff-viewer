@@ -3,6 +3,7 @@ import SiteHeader from '../components/SiteHeader';
 import PlaygroundControls, { type DemoState } from '../components/PlaygroundControls';
 import MetricsBar from '../components/MetricsBar';
 import { generateDiffText, getDatasetByKey } from '../data/presets';
+import benchmarkPayload from '../../../../benchmark-results/results.json';
 
 import { DiffViewer, type DiffViewerHandle, type DiffViewerProps, type LineId } from '../../../../packages/react/src';
 
@@ -29,10 +30,42 @@ type PerfMetrics = {
   totalTime: number | null;
 };
 
+type BenchmarkRow = {
+  lib: string;
+  lines: number;
+  initialRenderTimeMs: number | null;
+  averageFps: number | null;
+  memoryBytes: number | null;
+  status: 'ok' | 'timeout';
+};
+
+type BenchmarkPayload = {
+  generatedAt: string;
+  perCaseTimeoutMs: number;
+  results: BenchmarkRow[];
+};
+
+const benchmarkData = benchmarkPayload as BenchmarkPayload;
+
 const renderContent: NonNullable<DiffViewerProps['renderContent']> = (line) => {
   return `🧪 ${line.replace(/const/g, 'CONST').replace(/process/g, 'PROCESS')}`;
 };
 
+function formatDuration(ms: number | null) {
+  return ms == null ? 'N/A' : `${ms.toFixed(1)} ms`;
+}
+
+function formatFps(fps: number | null) {
+  return fps == null ? 'N/A' : `${fps.toFixed(1)} FPS`;
+}
+
+function formatMemory(bytes: number | null) {
+  if (bytes == null) {
+    return 'N/A';
+  }
+
+  return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
+}
 
 export default function DemoPage() {
   const [state, setState] = useState<DemoState>(INITIAL_STATE);
@@ -54,6 +87,32 @@ export default function DemoPage() {
     const initialDataset = getDatasetByKey(INITIAL_STATE.dataset);
     return generateDiffText(initialDataset.lines);
   });
+
+  const benchmarkSummary = useMemo(() => {
+    const findEntry = (lib: string, lines: number) =>
+      benchmarkData.results.find((item) => item.lib === lib && item.lines === lines);
+
+    const target10k = findEntry('react-virtualized-diff', 10000);
+    const target100k = findEntry('react-virtualized-diff', 100000);
+    const compare100k = findEntry('react-diff-view', 100000);
+
+    const timeoutCount = benchmarkData.results.filter((item) => item.status === 'timeout').length;
+
+    let memoryRatio: string | null = null;
+    if (target100k?.memoryBytes && compare100k?.memoryBytes) {
+      memoryRatio = `${(compare100k.memoryBytes / target100k.memoryBytes).toFixed(1)}x`;
+    }
+
+    return {
+      target10k,
+      target100k,
+      compare100k,
+      timeoutCount,
+      memoryRatio,
+      generatedAt: new Date(benchmarkData.generatedAt).toLocaleString(),
+      timeoutMs: benchmarkData.perCaseTimeoutMs,
+    };
+  }, []);
 
   useEffect(() => {
     let cancelled = false;
@@ -166,6 +225,36 @@ export default function DemoPage() {
             `showDiffOnly`, `renderContent`, `highlightLines`, `compareMethod`, `useDarkTheme`) to verify behavior quickly.
           </p>
         </div>
+
+        <section className="benchmark-strip">
+          <div className="benchmark-strip__header">
+            <h2>Benchmark snapshot</h2>
+            <p>Loaded from <code>benchmark-results/results.json</code> · Updated at {benchmarkSummary.generatedAt}</p>
+          </div>
+
+          <div className="benchmark-strip__grid">
+            <article className="benchmark-pill">
+              <span>10k lines</span>
+              <strong>{formatFps(benchmarkSummary.target10k?.averageFps ?? null)}</strong>
+              <small>{formatDuration(benchmarkSummary.target10k?.initialRenderTimeMs ?? null)}</small>
+            </article>
+            <article className="benchmark-pill">
+              <span>100k lines memory</span>
+              <strong>{formatMemory(benchmarkSummary.target100k?.memoryBytes ?? null)}</strong>
+              <small>react-virtualized-diff</small>
+            </article>
+            <article className="benchmark-pill">
+              <span>Memory advantage</span>
+              <strong>{benchmarkSummary.memoryRatio ?? 'N/A'}</strong>
+              <small>vs react-diff-view @100k</small>
+            </article>
+            <article className="benchmark-pill">
+              <span>Timeout cases</span>
+              <strong>{benchmarkSummary.timeoutCount}</strong>
+              <small>{benchmarkSummary.timeoutMs} ms per case</small>
+            </article>
+          </div>
+        </section>
 
         <div className="demo-layout">
           <PlaygroundControls

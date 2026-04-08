@@ -35,9 +35,27 @@ export function App() {
 
 ### `DiffViewer` props
 
-- `original: string`
-- `modified: string`
+- `original?: string`
+- `modified?: string`
+- `oldValue?: string` (compatibility API)
+- `newValue?: string` (compatibility API)
+- `splitView?: boolean` (default `true`)
+- `showDiffOnly?: boolean` (default `true`)
 - `contextLines?: number` (default `2`)
+- `extraLinesSurroundingDiff?: number` (compatibility alias)
+- `hideLineNumbers?: boolean` (default `false`)
+- `highlightLines?: Array<'L-n' | 'R-n' | range>`
+- `onLineNumberClick?: (lineId) => void`
+- `renderContent?: (line: string) => ReactNode`
+- `compareMethod?: "CHARS" | "WORDS" | "WORDS_WITH_SPACE" | "LINES" | "TRIMMED_LINES" | "SENTENCES" | "CSS"`
+- `disableWordDiff?: boolean`
+- `leftTitle?: ReactNode`
+- `rightTitle?: ReactNode`
+- `linesOffset?: number` (default `0`)
+- `useDarkTheme?: boolean`
+- `styles?: Partial<DiffViewerStyles>`
+- `codeFoldMessageRenderer?: ({ hiddenCount, expanded }) => ReactNode`
+- `ref?.resetCodeBlocks(): void`
 - `height?: number | string` (default `500`)
 - `locale?: DiffViewerLocale`
 - `language?: string` (reserved for future use)

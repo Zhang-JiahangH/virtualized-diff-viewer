@@ -1,4 +1,20 @@
+import type React from 'react';
+
 export type DiffType = 'added' | 'removed' | 'unchanged';
+
+export type CompareMethod =
+  | 'CHARS'
+  | 'WORDS'
+  | 'WORDS_WITH_SPACE'
+  | 'LINES'
+  | 'TRIMMED_LINES'
+  | 'SENTENCES'
+  | 'CSS';
+
+export interface WordChunk {
+  value: string;
+  type: DiffType;
+}
 
 export interface DiffLine {
   leftLineNumber: number | null;
@@ -6,6 +22,8 @@ export interface DiffLine {
   leftContent: string;
   rightContent: string;
   type: DiffType;
+  leftWordChunks?: WordChunk[];
+  rightWordChunks?: WordChunk[];
 }
 
 export type RenderItem =
@@ -23,11 +41,56 @@ export interface DiffViewerLocale {
   showMoreLines?: (count: number) => string;
 }
 
+export interface DiffViewerStyles {
+  container: React.CSSProperties;
+  titleRow: React.CSSProperties;
+  titleCell: React.CSSProperties;
+  line: React.CSSProperties;
+  lineNumber: React.CSSProperties;
+  marker: React.CSSProperties;
+  code: React.CSSProperties;
+  wordAdded: React.CSSProperties;
+  wordRemoved: React.CSSProperties;
+}
+
+export type LineId = `L-${number}` | `R-${number}`;
+
+export type HighlightToken = LineId | `${LineId}-${number}`;
+
+export type RenderContent = (source: string) => React.ReactNode;
+
+
+export interface DiffViewerHandle {
+  resetCodeBlocks: () => void;
+}
+
+export type CodeFoldMessageRenderer = (params: {
+  hiddenCount: number;
+  expanded: boolean;
+}) => React.ReactNode;
+
 export interface DiffViewerProps {
-  original: string;
-  modified: string;
+  original?: string;
+  modified?: string;
+  oldValue?: string;
+  newValue?: string;
   language?: string;
   contextLines?: number;
+  extraLinesSurroundingDiff?: number;
+  showDiffOnly?: boolean;
+  splitView?: boolean;
+  hideLineNumbers?: boolean;
+  highlightLines?: HighlightToken[];
+  onLineNumberClick?: (lineId: LineId) => void;
+  renderContent?: RenderContent;
+  compareMethod?: CompareMethod;
+  disableWordDiff?: boolean;
+  leftTitle?: React.ReactNode;
+  rightTitle?: React.ReactNode;
+  linesOffset?: number;
+  useDarkTheme?: boolean;
+  styles?: Partial<DiffViewerStyles>;
+  codeFoldMessageRenderer?: CodeFoldMessageRenderer;
   height?: number | string;
   locale?: DiffViewerLocale;
 }

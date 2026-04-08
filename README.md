@@ -52,9 +52,26 @@ export function App() {
 
 | Prop | Type | Default | Description |
 | --- | --- | --- | --- |
-| `original` | `string` | - | Original text content |
-| `modified` | `string` | - | Modified text content |
+| `original` | `string` | - | Original text content (new API) |
+| `modified` | `string` | - | Modified text content (new API) |
+| `oldValue` | `string` | - | Compatibility API: same as `original` |
+| `newValue` | `string` | - | Compatibility API: same as `modified` |
+| `splitView` | `boolean` | `true` | `true` for side-by-side, `false` for unified/inline |
+| `showDiffOnly` | `boolean` | `true` | Show only changed lines with collapsible unchanged blocks |
 | `contextLines` | `number` | `2` | Number of unchanged lines kept around diff hunks |
+| `extraLinesSurroundingDiff` | `number` | - | Compatibility API alias for context lines |
+| `hideLineNumbers` | `boolean` | `false` | Hide line number columns |
+| `highlightLines` | `Array<'L-n' \| 'R-n' \| range>` | - | Highlight specific lines (`L-3`, `R-5`, `L-10-15`) |
+| `onLineNumberClick` | `(lineId) => void` | - | Called when a line number is clicked |
+| `renderContent` | `(line: string) => ReactNode` | - | Custom line content renderer (syntax highlighting etc.) |
+| `compareMethod` | `"CHARS" \| "WORDS" \| "WORDS_WITH_SPACE" \| "LINES" \| "TRIMMED_LINES" \| "SENTENCES" \| "CSS"` | `"LINES"` | Diff compare strategy |
+| `disableWordDiff` | `boolean` | `false` | Disable inline word-level diff highlighting |
+| `leftTitle` | `ReactNode` | - | Left pane title (split view) |
+| `rightTitle` | `ReactNode` | - | Right pane title (split view) |
+| `linesOffset` | `number` | `0` | Add offset to displayed line numbers |
+| `useDarkTheme` | `boolean` | `false` | Built-in dark theme |
+| `styles` | `Partial<DiffViewerStyles>` | - | Override style slots |
+| `codeFoldMessageRenderer` | `({ hiddenCount, expanded }) => ReactNode` | - | Custom fold button content renderer |
 | `height` | `number \| string` | `500` | Viewport height of the virtual list |
 | `locale` | `DiffViewerLocale` | - | UI text localization |
 | `language` | `string` | - | Reserved field for future language-related extensions |
@@ -83,11 +100,11 @@ Metrics:
 - initial render time
 - memory usage (`usedJSHeapSize`)
 
-Quick highlights from latest report:
+Quick highlights from the latest report (`2026-04-08T06:45:43.686Z`):
 
-- At `10k` lines: ~`60 FPS`, `187.2 ms` initial render, `9.5 MB` memory.
-- At `50k/100k` lines: `react-diff-viewer` and `react-diff-viewer-continued` timeout.
-- At `100k` lines: `141.1 MB` (`react-virtualized-diff`) vs `1297.0 MB` (`react-diff-view`).
+- At `10k` lines (`react-virtualized-diff`): `60.8 FPS`, `127.0 ms` initial render, `9.5 MB` memory.
+- At `50k/100k` lines: `react-diff-viewer` and `react-diff-viewer-continued` both timeout (`60000 ms` per case).
+- At `100k` lines: `104.0 MB` (`react-virtualized-diff`) vs `1297.0 MB` (`react-diff-view`).
 
 Run benchmark:
 

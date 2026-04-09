@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://zhangjiahang.com/react-virtualized-diff/sitemap.xml

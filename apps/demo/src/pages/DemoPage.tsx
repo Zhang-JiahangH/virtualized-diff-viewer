@@ -6,6 +6,7 @@ import { generateDiffText, getDatasetByKey } from '../data/presets';
 import benchmarkPayload from '../../../../benchmark-results/results.json';
 
 import { DiffViewer, type DiffViewerHandle, type DiffViewerProps, type LineId } from '../../../../packages/react/src';
+import { useSeo } from '../utils/seo';
 
 const INITIAL_STATE: DemoState = {
   dataset: 'medium',
@@ -68,6 +69,13 @@ function formatMemory(bytes: number | null) {
 }
 
 export default function DemoPage() {
+  useSeo({
+    title: 'Interactive Demo | react-virtualized-diff',
+    description:
+      'Benchmark and explore a virtualized React diff viewer with live controls across 1k to 100k line datasets for large-scale code and text comparison.',
+    canonicalPath: '/demo',
+  });
+
   const [state, setState] = useState<DemoState>(INITIAL_STATE);
   const [isPreparing, setIsPreparing] = useState(false);
   const [metrics, setMetrics] = useState<PerfMetrics>({

@@ -34,6 +34,14 @@ export default function SiteHeader() {
           >
             GitHub
           </a>
+          <a
+            className="site-header__link"
+            href="https://www.zhangjiahang.com/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Credit: Jiahang Zhang
+          </a>
         </nav>
       </div>
     </header>

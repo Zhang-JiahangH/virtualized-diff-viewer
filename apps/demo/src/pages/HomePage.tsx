@@ -2,8 +2,16 @@ import { Link } from 'react-router-dom';
 import FeatureGrid from '../components/FeatureGrid';
 import HeroSection from '../components/HeroSection';
 import SiteHeader from '../components/SiteHeader';
+import { useSeo } from '../utils/seo';
 
 export default function HomePage() {
+  useSeo({
+    title: 'react-virtualized-diff | Virtualized React Diff Viewer for Large Text Files',
+    description:
+      'react-virtualized-diff is a high-performance virtualized React diff viewer for large text comparison, code review tooling, and AI-assisted workflows.',
+    canonicalPath: '/',
+  });
+
   return (
     <div className="site-page">
       <SiteHeader />

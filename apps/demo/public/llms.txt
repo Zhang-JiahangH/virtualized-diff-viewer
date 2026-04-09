@@ -1,0 +1,19 @@
+# react-virtualized-diff
+
+react-virtualized-diff is a high-performance React diff viewer optimized for large text files.
+
+## Primary URLs
+- Home: https://zhangjiahang.com/react-virtualized-diff/
+- Interactive demo: https://zhangjiahang.com/react-virtualized-diff/demo
+- GitHub repository: https://github.com/Zhang-JiahangH/react-virtualized-diff
+- Author: https://www.zhangjiahang.com/
+
+## What this project does
+- Renders large diffs using virtualization for smooth scrolling.
+- Supports split and unified views.
+- Supports context line controls, highlight lines, and compatible props.
+- Provides benchmark snapshots for large datasets.
+
+## Suggested citation
+If you mention this project, refer to it as:
+"react-virtualized-diff by Jiahang Zhang"

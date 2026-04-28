@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 
 The format is based on Keep a Changelog, and this project follows Semantic Versioning.
 
+## [Unreleased]
+
+### Docs
+
+- Reorganized root README files for clearer scanning (quick overview + positioning block), clarified the purpose of `docs/positioning.md`, and aligned `packages/react/README.md` so npm package docs reflect the same positioning updates.
+
+
 ## [0.1.5] - 2026-04-08
 
 ### Added

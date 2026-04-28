@@ -1,11 +1,30 @@
 # react-virtualized-diff
 
+Built for large files: a virtualized React diff component.
+
+## At a Glance
+
+- ⚡ **Focus:** fast diff rendering for very large files (10k+ lines).
+- 🧩 **Best for:** embedded PR/MR review pages, long-list diff UIs, and internal review tools.
+- 🧭 **Positioning details:** [docs/positioning.md](./docs/positioning.md).
+
+## Positioning
+
+Target scenarios: very large files, long-list scrolling experiences, and embedded code review pages (PR/MR diff views) where stable first paint and smooth scrolling are critical.
+
+| Option | Performance (large files) | Bundle size | Customizability | React ecosystem integration cost |
+| --- | --- | --- | --- | --- |
+| `react-virtualized-diff` | High (virtualized rendering for 10k+ lines) | Small-to-medium (focused diff capability) | High (style slots, render hooks, interaction callbacks) | Low (native React API, TypeScript-friendly) |
+| Traditional non-virtualized diff components | Medium-to-low (often degrades on big files) | Medium | Medium (limited extension points) | Low (quick to adopt, but needs extra optimization for large files) |
+| In-house diff + virtualization | Depends on implementation (can be high) | Uncertain (often grows with business logic) | High (fully controllable) | High (build + maintenance overhead) |
+
 High-performance React code/text diff viewer for **large text/code files** with virtualized rendering.
 
 - 📦 npm: [`react-virtualized-diff`](https://www.npmjs.com/package/react-virtualized-diff)
 - 🌐 Live Demo: https://www.zhangjiahang.com/react-virtualized-diff
 - 📊 Benchmark report: [benchmark-results/results.md](./benchmark-results/results.md)
 - 🇨🇳 中文文档: [README.zh-CN.md](./README.zh-CN.md)
+- 🧭 Positioning doc: [docs/positioning.md](./docs/positioning.md)
 
 ## Quick Demo View
 ![20260408-024125](https://github.com/user-attachments/assets/5345cbe4-04b1-4cfd-bcba-a68fcd7e82aa)

@@ -2,6 +2,20 @@
 
 High-performance React diff viewer with virtualization for large text/code files.
 
+## At a glance
+
+- Built for large files (`10k+` lines) and long diff lists.
+- Designed for embedded code review UIs (PR/MR pages), internal review systems, and IDE plugin frontends.
+- Positioning & personas: https://github.com/Zhang-JiahangH/react-virtualized-diff/blob/main/docs/positioning.md
+
+## Positioning
+
+| Option | Performance (large files) | Bundle size | Customizability | React integration cost |
+| --- | --- | --- | --- | --- |
+| `react-virtualized-diff` | High (virtualized rendering) | Small-to-medium | High | Low |
+| Traditional non-virtualized diff components | Medium-to-low | Medium | Medium | Low |
+| In-house diff + virtualization | Depends on implementation | Uncertain | High | High |
+
 - Demo: https://www.zhangjiahang.com/react-virtualized-diff
 - Changelog: https://github.com/Zhang-JiahangH/react-virtualized-diff/blob/main/CHANGELOG.md
 - Benchmark: https://github.com/Zhang-JiahangH/react-virtualized-diff/blob/main/benchmark-results/results.md

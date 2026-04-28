@@ -1,11 +1,30 @@
 # react-virtualized-diff
 
+为大文件而生的 React 虚拟化 diff 组件。
+
+## 快速了解
+
+- ⚡ **核心目标：** 面向 `10k+` 行大文件，保持渲染与滚动流畅。
+- 🧩 **典型场景：** PR/MR 代码审查页嵌入、长列表 diff 页面、内部审查系统。
+- 🧭 **定位细节：** [docs/positioning.md](./docs/positioning.md)。
+
+## 产品定位
+
+目标场景：超大文件（如 10k+ 行）、长列表滚动场景，以及代码审查页面（PR/MR Diff）嵌入，重点解决首屏渲染与滚动流畅度问题。
+
+| 方案 | 性能（大文件） | 包体积 | 可定制性 | React 生态集成成本 |
+| --- | --- | --- | --- | --- |
+| `react-virtualized-diff` | 高（虚拟化渲染，适合 10k+ 行） | 中等偏小（聚焦 diff 核心能力） | 高（样式槽位、渲染器、交互回调） | 低（原生 React 组件 + TypeScript 友好） |
+| 传统非虚拟化 diff 组件 | 中-低（大文件容易卡顿） | 中等 | 中（扩展点有限） | 低（接入快，但大文件需额外优化） |
+| 自研 diff + 列表虚拟化方案 | 取决于实现（理论可高） | 不确定（常随业务膨胀） | 高（完全可控） | 高（开发与维护成本高） |
+
 面向**大体量文本/代码文件**的高性能 React Diff 组件（虚拟滚动渲染）。
 
 - 📦 npm：[`react-virtualized-diff`](https://www.npmjs.com/package/react-virtualized-diff)
 - 🌐 在线 Demo：https://www.zhangjiahang.com/react-virtualized-diff
 - 📊 Benchmark 报告：[benchmark-results/results.md](./benchmark-results/results.md)
 - 🇬🇧 English README：[README.md](./README.md)
+- 🧭 定位文档：[docs/positioning.md](./docs/positioning.md)
 
 ## 示例
 ![20260408-024125](https://github.com/user-attachments/assets/5345cbe4-04b1-4cfd-bcba-a68fcd7e82aa)

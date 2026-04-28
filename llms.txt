@@ -31,12 +31,18 @@ npm install react-virtualized-diff
 ## Minimum usage
 
 ```jsx
-import { DiffViewer } from 'react-virtualized-diff';
+import { SimpleDiffViewer } from 'react-virtualized-diff';
 
-<DiffViewer original={oldText} modified={newText} />
+<SimpleDiffViewer original={oldText} modified={newText} />
 ```
 
 Two strings are the complete minimum API. This produces a side-by-side diff with collapsed unchanged blocks and virtualized scrolling.
+
+## API tiers
+
+- **Tier 1 (recommended):** `SimpleDiffViewer` for most product pages. Minimal props: `original`, `modified`, `height`, `splitView`, `showDiffOnly`, `contextLines`, `hideLineNumbers`, `useDarkTheme`, `locale`.
+- **Tier 2 (advanced):** `DiffViewer` (also exported as `AdvancedDiffViewer`) when you need deep customization such as `renderContent`, line-gutter interactions, fold-message customization, and style slot overrides.
+- See tiering guide: `docs/api-tiering.md`.
 
 ## Commonly used props
 

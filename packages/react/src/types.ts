@@ -1,5 +1,8 @@
 import type React from 'react';
 
+/**
+ * Diff line kind in rendered output.
+ */
 export type DiffType = 'added' | 'removed' | 'unchanged';
 
 export type CompareMethod =
@@ -57,9 +60,32 @@ export type LineId = `L-${number}` | `R-${number}`;
 
 export type HighlightToken = LineId | `${LineId}-${number}`;
 
+/**
+ * Render hook for custom line content (for example syntax-highlighted HTML/React nodes).
+ *
+ * @example
+ * ```tsx
+ * <DiffViewer
+ *   original={before}
+ *   modified={after}
+ *   renderContent={(line) => <code>{line}</code>}
+ * />
+ * ```
+ */
 export type RenderContent = (source: string) => React.ReactNode;
 
-
+/**
+ * Imperative methods exposed via `ref`.
+ *
+ * @example
+ * ```tsx
+ * const ref = useRef<DiffViewerHandle>(null);
+ *
+ * <DiffViewer ref={ref} original={before} modified={after} />
+ *
+ * ref.current?.resetCodeBlocks();
+ * ```
+ */
 export interface DiffViewerHandle {
   resetCodeBlocks: () => void;
 }
@@ -69,6 +95,20 @@ export type CodeFoldMessageRenderer = (params: {
   expanded: boolean;
 }) => React.ReactNode;
 
+/**
+ * Full-featured API for deep customization (advanced tier).
+ *
+ * @example
+ * ```tsx
+ * <DiffViewer
+ *   original={before}
+ *   modified={after}
+ *   renderContent={(line) => <MySyntaxLine line={line} />}
+ *   onLineNumberClick={(lineId) => console.log(lineId)}
+ *   codeFoldMessageRenderer={({ hiddenCount }) => <button>Expand {hiddenCount}</button>}
+ * />
+ * ```
+ */
 export interface DiffViewerProps {
   original?: string;
   modified?: string;

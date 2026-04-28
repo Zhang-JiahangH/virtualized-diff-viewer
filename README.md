@@ -51,14 +51,14 @@ pnpm add react-virtualized-diff
 ## Quick Start
 
 ```tsx
-import { DiffViewer } from 'react-virtualized-diff';
+import { SimpleDiffViewer } from 'react-virtualized-diff';
 
 const original = `line 1\nline 2\nline 3`;
 const modified = `line 1\nline 2 changed\nline 3\nline 4`;
 
 export function App() {
   return (
-    <DiffViewer
+    <SimpleDiffViewer
       original={original}
       modified={modified}
       contextLines={2}
@@ -70,7 +70,23 @@ export function App() {
 
 ## API
 
-### `DiffViewer`
+API tiering guide: [docs/api-tiering.md](./docs/api-tiering.md).
+
+### `SimpleDiffViewer` (recommended for 80% of cases)
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `original` | `string` | - | Original text content (left) |
+| `modified` | `string` | - | Modified text content (right) |
+| `height` | `number \| string` | `500` | Viewport height of the virtual list |
+| `splitView` | `boolean` | `true` | `true` for side-by-side, `false` for unified/inline |
+| `showDiffOnly` | `boolean` | `true` | Show only changed lines with collapsible unchanged blocks |
+| `contextLines` | `number` | `2` | Number of unchanged lines kept around diff hunks |
+| `hideLineNumbers` | `boolean` | `false` | Hide line number columns |
+| `useDarkTheme` | `boolean` | `false` | Built-in dark theme |
+| `locale` | `DiffViewerLocale` | - | UI text localization |
+
+### `DiffViewer` / `AdvancedDiffViewer` (deep customization)
 
 | Prop | Type | Default | Description |
 | --- | --- | --- | --- |

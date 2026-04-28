@@ -31,11 +31,11 @@ pnpm add react-virtualized-diff
 ## Usage
 
 ```tsx
-import { DiffViewer } from 'react-virtualized-diff';
+import { SimpleDiffViewer } from 'react-virtualized-diff';
 
 export function App() {
   return (
-    <DiffViewer
+    <SimpleDiffViewer
       original={'line 1\nline 2'}
       modified={'line 1\nline 2 changed'}
       contextLines={2}
@@ -47,7 +47,19 @@ export function App() {
 
 ## API
 
-### `DiffViewer` props
+### `SimpleDiffViewer` props (recommended for 80% of cases)
+
+- `original: string`
+- `modified: string`
+- `height?: number | string` (default `500`)
+- `splitView?: boolean` (default `true`)
+- `showDiffOnly?: boolean` (default `true`)
+- `contextLines?: number` (default `2`)
+- `hideLineNumbers?: boolean` (default `false`)
+- `useDarkTheme?: boolean` (default `false`)
+- `locale?: DiffViewerLocale`
+
+### `DiffViewer` / `AdvancedDiffViewer` props
 
 - `original?: string`
 - `modified?: string`

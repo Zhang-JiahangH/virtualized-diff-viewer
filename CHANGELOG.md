@@ -6,6 +6,16 @@ The format is based on Keep a Changelog, and this project follows Semantic Versi
 
 ## [Unreleased]
 
+### Added
+
+- Introduced API tiering with a new minimal `SimpleDiffViewer` export for common use cases, while keeping `DiffViewer` (and `AdvancedDiffViewer` alias) for advanced customization scenarios.
+- Added `docs/api-tiering.md` with persona-oriented guidance and three practical examples: basic diff, large-file virtualization, and commentable line embedding.
+- Added TypeScript JSDoc examples for advanced API types (`DiffViewerProps`, `RenderContent`, and `DiffViewerHandle`).
+
+### Changed
+
+- Updated README (EN/ZH), package README, and `llms.txt` to document minimal-vs-advanced API tiers and recommended adoption path.
+
 ### Docs
 
 - Reorganized root README files for clearer scanning (quick overview + positioning block), clarified the purpose of `docs/positioning.md`, and aligned `packages/react/README.md` so npm package docs reflect the same positioning updates.

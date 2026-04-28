@@ -51,14 +51,14 @@ pnpm add react-virtualized-diff
 ## 快速开始
 
 ```tsx
-import { DiffViewer } from 'react-virtualized-diff';
+import { SimpleDiffViewer } from 'react-virtualized-diff';
 
 const original = `line 1\nline 2\nline 3`;
 const modified = `line 1\nline 2 changed\nline 3\nline 4`;
 
 export function App() {
   return (
-    <DiffViewer
+    <SimpleDiffViewer
       original={original}
       modified={modified}
       contextLines={2}
@@ -70,13 +70,46 @@ export function App() {
 
 ## API
 
-### `DiffViewer`
+API 分层说明文档：[docs/api-tiering.md](./docs/api-tiering.md)。
+
+### `SimpleDiffViewer`（推荐，覆盖 80% 场景）
 
 | 属性 | 类型 | 默认值 | 说明 |
 | --- | --- | --- | --- |
-| `original` | `string` | - | 原始文本 |
-| `modified` | `string` | - | 修改后文本 |
+| `original` | `string` | - | 原始文本（左侧） |
+| `modified` | `string` | - | 修改后文本（右侧） |
+| `height` | `number \| string` | `500` | 虚拟列表可视区域高度 |
+| `splitView` | `boolean` | `true` | `true` 为左右并排，`false` 为统一视图 |
+| `showDiffOnly` | `boolean` | `true` | 仅展示变更块并折叠未变更区块 |
 | `contextLines` | `number` | `2` | 每个变更块周围保留的未变更行数 |
+| `hideLineNumbers` | `boolean` | `false` | 是否隐藏行号列 |
+| `useDarkTheme` | `boolean` | `false` | 内置暗色主题 |
+| `locale` | `DiffViewerLocale` | - | 组件文案本地化 |
+
+### `DiffViewer` / `AdvancedDiffViewer`（高级定制）
+
+| 属性 | 类型 | 默认值 | 说明 |
+| --- | --- | --- | --- |
+| `original` | `string` | - | 原始文本（新 API） |
+| `modified` | `string` | - | 修改后文本（新 API） |
+| `oldValue` | `string` | - | 兼容 API：等同 `original` |
+| `newValue` | `string` | - | 兼容 API：等同 `modified` |
+| `splitView` | `boolean` | `true` | `true` 为左右并排，`false` 为统一视图 |
+| `showDiffOnly` | `boolean` | `true` | 仅展示变更块并折叠未变更区块 |
+| `contextLines` | `number` | `2` | 每个变更块周围保留的未变更行数 |
+| `extraLinesSurroundingDiff` | `number` | - | 兼容 API：`contextLines` 别名 |
+| `hideLineNumbers` | `boolean` | `false` | 是否隐藏行号列 |
+| `highlightLines` | `Array<'L-n' \| 'R-n' \| range>` | - | 高亮指定行（如 `L-3`、`R-5`、`L-10-15`） |
+| `onLineNumberClick` | `(lineId) => void` | - | 点击行号回调 |
+| `renderContent` | `(line: string) => ReactNode` | - | 自定义行内容渲染（语法高亮等） |
+| `compareMethod` | `"CHARS" \| "WORDS" \| "WORDS_WITH_SPACE" \| "LINES" \| "TRIMMED_LINES" \| "SENTENCES" \| "CSS"` | `"LINES"` | Diff 比较策略 |
+| `disableWordDiff` | `boolean` | `false` | 关闭词级高亮 |
+| `leftTitle` | `ReactNode` | - | 左侧标题（并排模式） |
+| `rightTitle` | `ReactNode` | - | 右侧标题（并排模式） |
+| `linesOffset` | `number` | `0` | 行号显示偏移量 |
+| `useDarkTheme` | `boolean` | `false` | 内置暗色主题 |
+| `styles` | `Partial<DiffViewerStyles>` | - | 样式槽位覆盖 |
+| `codeFoldMessageRenderer` | `({ hiddenCount, expanded }) => ReactNode` | - | 自定义折叠按钮文案渲染 |
 | `height` | `number \| string` | `500` | 虚拟列表可视区域高度 |
 | `locale` | `DiffViewerLocale` | - | 组件文案本地化 |
 | `language` | `string` | - | 预留字段（未来语言相关扩展） |

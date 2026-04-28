@@ -11,8 +11,9 @@
     "benchmark": "node ./scripts/run-benchmark.mjs"
   },
   "volta": {
-    "node": "20.11.1",
-    "pnpm": "10.0.0"
+    "node": "20.19.4",
+    "pnpm": "10.0.0",
+    "npm": "10.8.2"
   },
   "devDependencies": {
     "playwright": "^1.54.2"

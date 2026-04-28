@@ -6,9 +6,12 @@ The format is based on Keep a Changelog, and this project follows Semantic Versi
 
 ## [Unreleased]
 
+## [0.1.6] - 2026-04-28
+
 ### Added
 
 - Introduced API tiering with a new minimal `SimpleDiffViewer` export for common use cases, while keeping `DiffViewer` (and `AdvancedDiffViewer` alias) for advanced customization scenarios.
+- Added a new **Simplified View** release track so teams can adopt `SimpleDiffViewer` first and get a cleaner default experience for lightweight diff pages.
 - Added `docs/api-tiering.md` with persona-oriented guidance and three practical examples: basic diff, large-file virtualization, and commentable line embedding.
 - Added TypeScript JSDoc examples for advanced API types (`DiffViewerProps`, `RenderContent`, and `DiffViewerHandle`).
 
@@ -19,7 +22,6 @@ The format is based on Keep a Changelog, and this project follows Semantic Versi
 ### Docs
 
 - Reorganized root README files for clearer scanning (quick overview + positioning block), clarified the purpose of `docs/positioning.md`, and aligned `packages/react/README.md` so npm package docs reflect the same positioning updates.
-
 
 ## [0.1.5] - 2026-04-08
 
@@ -45,7 +47,6 @@ The format is based on Keep a Changelog, and this project follows Semantic Versi
 - Upgraded styling/theming extensibility with `styles` overrides and `useDarkTheme`.
 - Added review-style headers via `leftTitle` / `rightTitle` and line-number offset support via `linesOffset`.
 - Bumped workspace package versions from `0.1.4` to `0.1.5` for this release.
-
 
 ## [0.1.4] - 2026-04-07
 
